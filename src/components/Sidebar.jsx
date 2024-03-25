@@ -1,42 +1,59 @@
 import React, { useState } from "react";
-import { NavLink} from "react-router-dom";
-import {FaBars} from "react-icons/fa"
+import { NavLink, useLocation } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 import images from "../services/images";
 
 export default function Header() {
-  const[isOpen ,setIsOpen] = useState(false);
-  const toggle = () => setIsOpen (!isOpen);
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
-
- 
   const menuItem = [
-    { name: "Dashboard", icon: images.Home, route: "/dashboard" },
-    { name: "Seller", icon: images.MessageMail, route: "/seller" },
-    { name: "Buyer", icon: images.BarChartAnalysis, route: "/buyer" },
-    { name: "Crypto", icon: images.exchange, route: "/Crypto" }
-    // ... to be added
+    {
+      name: "Users",
+      notActive: images.user,
+      activeImg: images.selectedUser,
+      route: "/",
+    },
+    {
+      name: "Product Seller",
+      notActive: images.pediCure,
+      activeImg: images.selectedpediCure,
+      route: "/seller",
+    },
+    {
+      name: "Salon Services",
+      notActive: images.hairDry,
+      activeImg: images.selectedHairdry,
+      route: "/Service",
+    },
   ];
 
   return (
-    <div className={`fixed inset-y-0 left-0 z-10 flex flex-col ${
-        isOpen ? "w-64" : "w-20"
-      }  transition-width duration-300`}>``
-           <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
-               <div className="top_section">
-                   <h1 style={{display: isOpen ? "block" : "none"}} className="icon"><img  src={images.logoIcon} alt="logo icon" /></h1>
-                   <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
-                       <FaBars onClick={toggle}/>
-                   </div>
-               </div>
-               {
-                   menuItem.map((item)=>(
-                       <NavLink to={item.route} key={item.name} className="link" >
-                           <div className="icon"><img src={item.icon} alt={"${item.name} Icon"}></img></div>
-                           <div style={{display: isOpen ? "block" : "none"}} className="link_text">{item.name}</div>
-                       </NavLink>
-                   ))
-               }
-           </div>
+    <div className="fixed inset-y-0 left-0 bg-sidebar w-60 z-10 flex flex-col">
+      <div className="items-center flex flex-col mt-40">
+        {menuItem.map((item) => (
+          <NavLink
+            to={item.route}
+            key={item.name}
+            className={`cursor-pointer h-20 ${
+              location.pathname === item.route
+                ? "text-activeText"
+                : "text-black"
+            }`}
+          >
+            <div className="gap-3 flex items-center w-40">
+              <div className="w-10  ">
+                {location.pathname === item.route ? (
+                  <img src={item.activeImg} alt={item.name}></img>
+                ) : (
+                  <img src={item.notActive} alt={item.name}></img>
+                )}
+              </div>
+              <div className="font-semibold ">{item.name}</div>
+            </div>
+          </NavLink>
+        ))}
       </div>
+    </div>
   );
 }

@@ -1,65 +1,125 @@
-import React, { useState } from 'react';
-import { useStateContext } from '../../context';
+import React from "react";
+import { useState } from "react";
+import Images from "../../services/images";
 
-const Seller = () => {
-    const { registerParticipant, createOffer, offers } = useStateContext();
-    const [amount, setAmount] = useState('');
-    const [price, setPrice] = useState('');
-
-    const handleRegister = () => {
-        registerParticipant();
-    };
-
-    const handleCreateOffer = () => {
-        createOffer(amount, price);
-    };
-
-    return (
-        <div className="flex justify-center">
-            <div className="flex flex-col items-center w-full max-w-md p-4 space-y-4">
-
-                <button 
-                    onClick={handleRegister} 
-                    className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
-                >
-                    Register as Participant
-                </button>
-
-                <h2>Create an Offer</h2>
-                <input
-                    type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                    placeholder="Amount"
-                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                />
-                <input
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    placeholder="Price"
-                    className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-                />
-                <button 
-                    onClick={handleCreateOffer}
-                    className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
-                >
-                    Create Offer
-                </button>
-
-                <h2>Current Offers</h2>
-                <ul className="w-full list-disc pl-5">
-                    {offers.map((offer, index) => (
-                        <li key={index} className="py-1">
-                            Amount: {offer.amount}, Price: {offer.price}
-                        </li>
-                    ))}
-                </ul>
-
-                
-            </div>
+export default function Seller() {
+  const [userData, setUserdata] = useState([
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+    {
+      profilePic: Images.profilePic,
+      name: "Andrew Bojangles",
+      phoneNumber: "+79000010101",
+      Email: "Email",
+      Activity: "2 days ago",
+    },
+  ]);
+  return (
+    <div className="flex flex-col  bg-pink h-full  mb-10     max-w-screen-xl mt-10 mx-auto ">
+      <div className="flex w-full p-10 justify-between">
+        <div className="gap-5 flex ">
+          <img src={Images.unTicked} alt="" className=" h-5" />
+          <div className="text-textColor font-semibold"> User</div>
         </div>
-    );
-};
-
-export default Seller;
+        <div className=" flex justify-evenly w-80p">
+          <div className="text-textColor">Phone number</div>
+          <div className="text-textColor">Email</div>
+          <div className="text-textColor">Activity</div>
+        </div>
+      </div>
+      <div className="flex flex-col ml-5 mr-5 gap-6 pb-10  ">
+        {userData.map((item, index) => (
+          <div key={index} className="flex items-center justify-between">
+            <div className="flex gap-5 items-center">
+              <img src={item.profilePic} alt="" className="rounded-full h-12" />
+              <div className="font-semibold">{item.name}</div>
+            </div>
+            <div className=" ml-24">{item.phoneNumber}</div>
+            <div className=" ml-10">{item.Email}</div>
+            <div className=" ml-4">{item.Activity}</div>
+            <img
+              src={Images.extend}
+              alt=""
+              className="cursor-pointer active:opacity-50"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

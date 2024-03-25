@@ -9,6 +9,10 @@ export default {
         secondary: "#3498db",
         weirdblue: "#344e87",
         afterhover: "#6181c6",
+        sidebar: "#EBEBEB",
+        pink: "#f5eef9",
+        textColor: "#7D7D7D",
+        activeText: "#9D8AAE",
       },
       width: {
         "80p": "80%",
